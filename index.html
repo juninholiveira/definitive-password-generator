@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./fonts/inter.ttf" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Definitive Password Generator</title>
+    <script src="./src/script.js"></script>
+</head>
+<body>
+
+    <h1>DEFINITIVE</h1>
+    <h1 id="accent-header">PASSWORD</h1>
+    <h1>GENERATOR</h1>
+
+    <div id="container">
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">CHARS AMOUNT</label>
+                <label id="pass-safety"></label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-amount" type="number" min="4" value="16"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">INCLUDE SYMBOLS</label>
+                <label class="sub-label-text">! @ # $ % &...</label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-symbols" type="checkbox"/>
+                <label for="input-symbols"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">INCLUDE NUMBERS</label>
+                <label class="sub-label-text">1 2 3 4 5 6 7 8 9 0</label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-numbers" type="checkbox"/>
+                <label for="input-numbers"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">INCLUDE UPPER-CASE</label>
+                <label class="sub-label-text">A B C D E...</label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-uppercase" type="checkbox"/>
+                <label for="input-uppercase"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">INCLUDE LOWER-CASE</label>
+                <label class="sub-label-text">a b c d e...</label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-lowercase" type="checkbox"/>
+                <label for="input-lowercase"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">EXCLUDE SIMILAR</label>
+                <label class="sub-label-text">i l 1 L o 0 O</label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-exclude-similar" type="checkbox"/>
+                <label for="input-exclude-similar"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+                <label class="main-label-text">EXCLUDE AMBIGUOUS</label>
+                <label class="sub-label-text">{ } [ ] ( ) / \ ' " ` ~ , ; : . < ></label>
+            </div>
+            <div class="switch-toggle">
+                <input id="input-exclude-ambiguous" type="checkbox"/>
+                <label for="input-exclude-ambiguous"></label>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer-buttons">
+            <button id="button-generate" class="action-button">GENERATE</button>
+            <button id="button-copy" class="action-button">COPY</button>
+        </div>
+        <div id="footer-result">
+            <textarea id="textarea-result" readonly="true" wrap="hard">6hGbepVLCX,}7+V3c)2jQS2jBjWNVzU/']}dGJ"\'F"~D*5hGcS6w7TE&Qh\Jw4!*\"u{wL2q)6hGbepVLCX,}7+V3c)2jQS2jBjWNVzU/']}dGJ"\'F"~D*5hGcS6w7TE&Qh\Jw4!*\"u{wL2q)</textarea>
+        </div>
+    </div>
+
+</body>
+</html>
