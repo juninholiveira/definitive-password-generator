@@ -12,12 +12,17 @@ const copyButton                = document.querySelector('#button-copy')
 const resultTextarea            = document.querySelector('#textarea-result')
 
 //Characters
-const symbols           = "`~!@#$%^&*()-_=+[{]}\;:',<.>/?"
-const numbers           = "1234567890"
-const lettersUppercase  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const lettersLowercase  = "abcdefghijklmnopqrstuvwxyz"
+const originalSymbols   = "`~!@#$%^&*()-_=+[{]}\;:',<.>/?"
+const originalNumbers   = "1234567890"
+const originalUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const originalLowercase = "abcdefghijklmnopqrstuvwxyz"
 const similar           = ["i","l","1","L","o","O","0"]
 const ambiguous         = ["[","]","{","}","(",")","/","\\","'","\"","`","~",",",";",":",".","<",">"]
+
+let symbols           = "`~!@#$%^&*()-_=+[{]}\;:',<.>/?"
+let numbers           = "1234567890"
+let lettersUppercase  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let lettersLowercase  = "abcdefghijklmnopqrstuvwxyz"
 let categories          = ["symbols","numbers","uppercase","lowercase"]
 let completeCharset
 
@@ -65,9 +70,10 @@ function initialSetup()
     chosenCategories   = ["symbols","numbers","uppercase","lowercase"]
 }
 
-//Get the values setted on the interface and store in the variables used by the generatePass()
+//Get the parameters setted on the interface and store in the variables used by the generatePass()
 function getValuesFromInterface()
 {
+    //Get the parameters from the interface
     amount = Number(amountInput.getAttribute("value"))
     includeSymbols = includeSymbolsToggle.checked
     includeNumbers = includeNumbersToggle.checked
@@ -76,9 +82,34 @@ function getValuesFromInterface()
     excludeSimilar = excludeSimilarToggle.checked
     excludeAmbiguous = excludeAmbiguousToggle.checked
 
-    chosenCategories = []
-    completeCharset = ""
+    //Resets the previous configured values
+    symbols             = originalSymbols
+    numbers             = originalNumbers
+    lettersUppercase    = originalUppercase
+    lettersLowercase    = originalLowercase
+    chosenCategories    = []
+    completeCharset     = ""
 
+    if(excludeSimilar)
+    {
+        //exclude the similar chars from the charset groups
+        similar.forEach(item => {
+            symbols             = symbols.replace(item.toString(), "")
+            numbers             = numbers.replace(item.toString(), "")
+            lettersUppercase    = lettersUppercase.replace(item.toString(), "")
+            lettersLowercase    = lettersLowercase.replace(item.toString(), "")
+        })
+    }
+    if(excludeAmbiguous)
+    {
+        //exclude the ambiguous chars from the charset groups
+        ambiguous.forEach(item => {
+            symbols             = symbols.replace(item.toString(), "")
+            numbers             = numbers.replace(item.toString(), "")
+            lettersUppercase    = lettersUppercase.replace(item.toString(), "")
+            lettersLowercase    = lettersLowercase.replace(item.toString(), "")
+        })
+    }
     if(includeSymbols)
     {
         chosenCategories.push("symbols")
@@ -99,20 +130,7 @@ function getValuesFromInterface()
         chosenCategories.push("lowercase")
         completeCharset += lettersLowercase
     }
-    if(excludeSimilar)
-    {
-        //exclude the similar chars from the completeCharset
-        similar.forEach(item => {
-            completeCharset = completeCharset.replace(item.toString(), "")
-        })
-    }
-    if(excludeAmbiguous)
-    {
-        //exclude the similar chars from the completeCharset
-        ambiguous.forEach(item => {
-            completeCharset = completeCharset.replace(item.toString(), "")
-        })
-    }
+    
 }
 
 //create the events when the actions are performed in the GUI
