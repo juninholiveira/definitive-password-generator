@@ -46,7 +46,7 @@ const passMaximumText       = "STORING NUCLEAR CODES, I SEE..."
 const passMaximumColor      = "rgb(0,0,0)"
 
 //Booleans for the inputs
-let amount              = 16
+let amount              
 let includeSymbols      = true
 let includeNumbers      = true
 let includeUppercase    = true
@@ -76,7 +76,8 @@ function initialSetup()
 function getValuesFromInterface()
 {
     //Get the parameters from the interface
-    amount = Number(amountInput.getAttribute("value"))
+    //amount = Number(amountInput.getAttribute("value"))
+    amount = amountInput.value
     includeSymbols = includeSymbolsToggle.checked
     includeNumbers = includeNumbersToggle.checked
     includeUppercase = includeUppercaseToggle.checked
@@ -141,6 +142,10 @@ generateButton.addEventListener("click", () => {
 })
 copyButton.addEventListener("click", () => {
     copyPass()
+})
+amountInput.addEventListener("change", () => {
+    amount = amountInput.value
+    console.log(amount)
 })
 
 //Main function to generate the random password based on the parameters
