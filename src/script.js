@@ -16,9 +16,9 @@ const symbols           = "`~!@#$%^&*()-_=+[{]}\;:',<.>/?"
 const numbers           = "1234567890"
 const lettersUppercase  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const lettersLowercase  = "abcdefghijklmnopqrstuvwxyz"
-const similar           = "il1LoO0"
-const ambiguous         = "[]{}()/\\'\"`~,;:.<>"
-let categories        = ["symbols","numbers","uppercase","lowercase"]
+const similar           = ["i","l","1","L","o","O","0"]
+const ambiguous         = ["[","]","{","}","(",")","/","\\","'","\"","`","~",",",";",":",".","<",">"]
+let categories          = ["symbols","numbers","uppercase","lowercase"]
 let completeCharset
 
 //The generated pass
@@ -77,6 +77,8 @@ function getValuesFromInterface()
     excludeAmbiguous = excludeAmbiguousToggle.checked
 
     chosenCategories = []
+    completeCharset = ""
+
     if(includeSymbols)
     {
         chosenCategories.push("symbols")
@@ -100,10 +102,16 @@ function getValuesFromInterface()
     if(excludeSimilar)
     {
         //exclude the similar chars from the completeCharset
+        similar.forEach(item => {
+            completeCharset = completeCharset.replace(item.toString(), "")
+        })
     }
     if(excludeAmbiguous)
     {
-        //exclude the ambiguous chars from the completeCharset
+        //exclude the similar chars from the completeCharset
+        ambiguous.forEach(item => {
+            completeCharset = completeCharset.replace(item.toString(), "")
+        })
     }
 }
 
@@ -117,6 +125,7 @@ function generatePass()
 {
     //Updates the parameters
     getValuesFromInterface()
+    console.log(completeCharset)
 
     //Erases the password in memory
     let password = ""
