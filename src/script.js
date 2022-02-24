@@ -1,3 +1,5 @@
+
+
 //HTML elements gathered from the DOM
 const amountInput               = document.querySelector('#input-amount')
 const passSafetyText            = document.querySelector('#pass-safety')
@@ -137,16 +139,18 @@ function getValuesFromInterface()
 generateButton.addEventListener("click", () => {
     generatePass()
 })
+copyButton.addEventListener("click", () => {
+    copyPass()
+})
 
 //Main function to generate the random password based on the parameters
 function generatePass()
 {
     //Updates the parameters
     getValuesFromInterface()
-    console.log(completeCharset)
 
     //Erases the password in memory
-    let password = ""
+    password = ""
 
     //Shuffle the chosenCategories to avoid the biginning of the password to always have the same categorie order
     shuffle(chosenCategories)
@@ -173,6 +177,7 @@ function generatePass()
         }
     }
 
+    //Now, for the rest of the password, i get one random char from the complete charset (with exclusions)
     for (var i = chosenCategories.length - 1; i < amount; i++)
     {
         password += completeCharset.charAt(Math.floor(Math.random() * completeCharset.length))
@@ -185,19 +190,18 @@ function generatePass()
 //Copies the generated password to the clipboard
 function copyPass()
 {
-
+    //I use the function exposed in the preload.js, that uses the clipboard API to write the text to clipboard
+    if(password != "")
+        window.clipboard.copyToClipboard(password)
 }
 
 function shuffle(array)
 {
     var m = array.length, t, i;
-  
     // While there remain elements to shuffle…
     while (m) {
-  
         // Pick a remaining element…
         i = Math.floor(Math.random() * m--);
-  
         // And swap it with the current element.
         t = array[m];
         array[m] = array[i];

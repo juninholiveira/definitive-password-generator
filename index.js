@@ -1,4 +1,5 @@
 const { app, BrowserWindow} = require('electron')
+const path = require('path')
 
 let mainWindow
 
@@ -20,9 +21,12 @@ function createWindow()
     mainWindow = new BrowserWindow({
         width: 500,
         height: 800,
-        resizable: false,
-        titleBarOverlay: false
+        resizable: true,
+        titleBarOverlay: true,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
     })
-    mainWindow.removeMenu()
+    //mainWindow.removeMenu()
     mainWindow.loadURL(`file://${__dirname}/index.html`)
 }
