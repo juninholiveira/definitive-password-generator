@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="./fonts/inter.ttf" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <title>Definitive Password Generator</title>
-    <script src="./src/script.js"></script>
 </head>
 <body>
 
@@ -20,7 +21,7 @@
         <div class="row">
             <div class="label">
                 <label class="main-label-text">CHARS AMOUNT</label>
-                <label id="pass-safety"></label>
+                <text id="pass-safety"></text>
             </div>
             <div class="switch-toggle">
                 <input id="input-amount" type="number" min="4" value="16"/>
@@ -100,9 +101,10 @@
             <button id="button-copy" class="action-button">COPY</button>
         </div>
         <div id="footer-result">
-            <textarea id="textarea-result" readonly="true" wrap="hard">6hGbepVLCX,}7+V3c)2jQS2jBjWNVzU/']}dGJ"\'F"~D*5hGcS6w7TE&Qh\Jw4!*\"u{wL2q)6hGbepVLCX,}7+V3c)2jQS2jBjWNVzU/']}dGJ"\'F"~D*5hGcS6w7TE&Qh\Jw4!*\"u{wL2q)</textarea>
+            <textarea id="textarea-result" readonly="true" wrap="hard" placeholder="Your password will appear here!"></textarea>
         </div>
     </div>
 
+    <script src="./src/script.js"></script>
 </body>
 </html>

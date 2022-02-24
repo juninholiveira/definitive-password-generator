@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "electron ."
+    "dev": "electron .",
+    "start": "electron ."
   },
   "keywords": [],
   "author": "",
