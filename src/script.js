@@ -12,11 +12,14 @@ const copyButton                = document.querySelector('#button-copy')
 const resultTextarea            = document.querySelector('#textarea-result')
 
 //Characters
-const symbols   = "`~!@#$%^&*()-_=+[{]}\|;:',<.>/?"
-const numbers   = "1234567890"
-const letters   = "abcdefghighijklmnopqrstuvwxyz"
-const similar   = "il1LoO0"
-const ambiguous = "[]{}()/\\'\"`~,;:.<>"
+const symbols           = "`~!@#$%^&*()-_=+[{]}\;:',<.>/?"
+const numbers           = "1234567890"
+const lettersUppercase  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const lettersLowercase  = "abcdefghijklmnopqrstuvwxyz"
+const similar           = "il1LoO0"
+const ambiguous         = "[]{}()/\\'\"`~,;:.<>"
+let categories        = ["symbols","numbers","uppercase","lowercase"]
+let completeCharset
 
 //The generated pass
 let password
@@ -43,6 +46,7 @@ let includeUppercase    = true
 let includeLowercase    = true
 let excludeSimilar      = true
 let excludeAmbiguous    = true
+let chosenCategories   = ["symbols","numbers","uppercase","lowercase"]
 
 initialSetup()
 getValuesFromInterface()
@@ -58,6 +62,7 @@ function initialSetup()
     includeLowercaseToggle.checked = true
     excludeSimilarToggle.checked = true
     excludeAmbiguousToggle.checked = true
+    chosenCategories   = ["symbols","numbers","uppercase","lowercase"]
 }
 
 //Get the values setted on the interface and store in the variables used by the generatePass()
@@ -70,6 +75,36 @@ function getValuesFromInterface()
     includeLowercase = includeLowercaseToggle.checked
     excludeSimilar = excludeSimilarToggle.checked
     excludeAmbiguous = excludeAmbiguousToggle.checked
+
+    chosenCategories = []
+    if(includeSymbols)
+    {
+        chosenCategories.push("symbols")
+        completeCharset += symbols
+    }
+    if(includeNumbers)
+    {
+        chosenCategories.push("numbers")
+        completeCharset += numbers
+    }
+    if(includeUppercase)
+    {
+        chosenCategories.push("uppercase")
+        completeCharset += lettersUppercase
+    }
+    if(includeLowercase)
+    {
+        chosenCategories.push("lowercase")
+        completeCharset += lettersLowercase
+    }
+    if(excludeSimilar)
+    {
+        //exclude the similar chars from the completeCharset
+    }
+    if(excludeAmbiguous)
+    {
+        //exclude the ambiguous chars from the completeCharset
+    }
 }
 
 //create the events when the actions are performed in the GUI
@@ -86,10 +121,34 @@ function generatePass()
     //Erases the password in memory
     let password = ""
 
-    //Adds a random char in the new password
-    for (var i = 0; i < amount; i++)
+    //Shuffle the chosenCategories to avoid the biginning of the password to always have the same categorie order
+    shuffle(chosenCategories)
+
+    //I place one char of each categorie on the beginning of the password to make sure that every password will have at least one of each chosen categorie
+    for (var i = 0; i < chosenCategories.length; i++)
     {
-        password += letters.charAt(Math.floor(Math.random() * letters.length))
+        switch (chosenCategories[i])
+        {
+            case "symbols":
+                password += symbols.charAt(Math.floor(Math.random() * symbols.length))
+                break
+            case "numbers":
+                password += numbers.charAt(Math.floor(Math.random() * numbers.length))
+                break
+            case "uppercase":
+                password += lettersUppercase.charAt(Math.floor(Math.random() * lettersUppercase.length))
+                break
+            case "lowercase":
+                password += lettersLowercase.charAt(Math.floor(Math.random() * lettersLowercase.length))
+                break
+            default:
+                console.log("No categories selected")
+        }
+    }
+
+    for (var i = chosenCategories.length - 1; i < amount; i++)
+    {
+        password += completeCharset.charAt(Math.floor(Math.random() * completeCharset.length))
     }
 
     //Places the result password in the interface
@@ -100,4 +159,22 @@ function generatePass()
 function copyPass()
 {
 
+}
+
+function shuffle(array)
+{
+    var m = array.length, t, i;
+  
+    // While there remain elements to shuffle…
+    while (m) {
+  
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+  
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+    return array;
 }
