@@ -57,10 +57,10 @@ body
 #window-controls
 {
     display: grid;
-    grid-template-columns: repeat(3, 46px);
+    grid-template-columns: repeat(2, 46px);
     position: absolute;
     top: 0;
-    right: 0;
+    right: 8px;
     height: 100%;
     -webkit-app-region: no-drag;
 }
@@ -90,13 +90,9 @@ body
 {
     grid-column: 1;
 }
-#max-button, #restore-button
-{
-    grid-column: 2;
-}
 #close-button
 {
-    grid-column: 3;
+    grid-column: 2;
 }
 #close-button:hover
 {
@@ -109,11 +105,6 @@ body
 #close-button:active .icon
 {
     filter: invert(1);
-}
-  
-#restore-button
-{
-    display: none !important;
 }
 
 @media (-webkit-device-pixel-ratio: 1.5), (device-pixel-ratio: 1.5),
