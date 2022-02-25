@@ -212,6 +212,7 @@ h1
     font-weight: 500;
     font-size: 15px;
     color: #474747;
+    word-break: break-all;
 }
 
 #textarea-result::placeholder
