@@ -33,15 +33,20 @@ let password
 
 //Colors and text for the pass safety
 const passWeakText          = "WEAK"
-const passWeakColor         = "rgb(191,63,63)"
+const passWeakColor         = "rgb(255, 51, 0)"
+const passWeakNumber        = 7
 const passMediumText        = "MEDIUM"
-const passMediumColor       = "rgb(191,112,63)"
+const passMediumColor       = "rgb(255, 115, 0)"
+const passMediumNumber      = 15
 const passStrongText        = "STRONG"
-const passStrongColor       = "rgb(191,172,63)"
+const passStrongColor       = "rgb(128, 255, 0)"
+const passStrongNumber      = 23
 const passVeryStrongText    = "VERY STRONG"
-const passVeryStrongColor   = "rgb(101,191,63)"
+const passVeryStrongColor   = "rgb(0, 255, 238)"
+const passVeryStrongNumber  = 63
 const passOverkillText      = "OK, THIS IS GETTING OUT OF CONTROL"
-const passOverkillColor     = "rgb(187,63,191)"
+const passOverkillColor     = "rgb(255, 56, 202)"
+const passOverkillNumber    = 2047
 const passMaximumText       = "STORING NUCLEAR CODES, I SEE..."
 const passMaximumColor      = "rgb(0,0,0)"
 
@@ -144,8 +149,39 @@ copyButton.addEventListener("click", () => {
     copyPass()
 })
 amountInput.addEventListener("change", () => {
+    //Stores the new value
     amount = amountInput.value
-    console.log(amount)
+
+    if(amount <= passWeakNumber)
+    {
+        passSafetyText.innerText = passWeakText
+        passSafetyText.style.color = passWeakColor
+    }
+    else if(amount <= passMediumNumber)
+    {
+        passSafetyText.innerText = passMediumText
+        passSafetyText.style.color = passMediumColor
+    }
+    else if(amount <= passStrongNumber)
+    {
+        passSafetyText.innerText = passStrongText
+        passSafetyText.style.color = passStrongColor
+    }
+    else if(amount <= passVeryStrongNumber)
+    {
+        passSafetyText.innerText = passVeryStrongText
+        passSafetyText.style.color = passVeryStrongColor
+    }
+    else if(amount <= passOverkillNumber)
+    {
+        passSafetyText.innerText = passOverkillText
+        passSafetyText.style.color = passOverkillColor
+    }
+    else
+    {
+        passSafetyText.innerText = passMaximumText
+        passSafetyText.style.color = passMaximumColor
+    }
 })
 
 //Main function to generate the random password based on the parameters
