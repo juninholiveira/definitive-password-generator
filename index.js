@@ -31,8 +31,9 @@ function createWindow()
         width: 500,
         height: 800,
         backgroundColor: "#FFF",
+        icon:'./src/icons/png/128x128.png',
         frame: false,
-        resizable: true,
+        resizable: false,
         //titleBarOverlay: false,
         webPreferences: {
             nodeIntegration: true,
