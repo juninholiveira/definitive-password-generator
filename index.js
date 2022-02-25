@@ -4,7 +4,6 @@ const ipc = ipcMain;
 
 let mainWindow
 
-
 app.whenReady().then(() => {
     createWindow()
     app.on('activate', () => {
@@ -33,20 +32,22 @@ function createWindow()
         backgroundColor: "#FFF",
         icon:'./src/icons/png/128x128.png',
         frame: false,
-        resizable: false,
-        //titleBarOverlay: false,
+        resizable: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
             preload: path.join(__dirname, 'preload.js')
         }
     })
+
     ipc.on("closeApp", () => {
         mainWindow.close();
     });
+
     ipc.on("minApp", () => {
         mainWindow.minimize();
     });
+
     ipc.on("maxApp", () => {
         if(mainWindow.isMaximized()) {
             mainWindow.webContents.send("changeIr");
@@ -56,8 +57,7 @@ function createWindow()
             mainWindow.maximize();
         }
     });
-    //mainWindow.removeMenu()
-    //mainWindow.webContents.openDevTools()
+
     mainWindow.loadURL(`file://${__dirname}/index.html`)
 
     //Emitted when the window is closed.
