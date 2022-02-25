@@ -149,9 +149,15 @@ copyButton.addEventListener("click", () => {
     copyPass()
 })
 amountInput.addEventListener("change", () => {
+
+    //Clamp the minimum and maximum allowed value
+    if(amountInput.value < 4) amountInput.value = 4
+    else if(amountInput.value > 2048) amountInput.value = 2048
+
     //Stores the new value
     amount = amountInput.value
 
+    //Changes the pass safety label with the appropriate text and color
     if(amount <= passWeakNumber)
     {
         passSafetyText.innerText = passWeakText
