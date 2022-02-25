@@ -1,5 +1,3 @@
-
-
 //HTML elements gathered from the DOM
 const amountInput               = document.querySelector('#input-amount')
 const passSafetyText            = document.querySelector('#pass-safety')
