@@ -18,7 +18,7 @@
   "build": {
     "appId": "com.leandrojunior.definitive-password-generator",
     "productName": "Definitive Password Generator",
-    "target": "appx",
+    "target": "nsis",
     "directories": {
       "output": "build"
     },
