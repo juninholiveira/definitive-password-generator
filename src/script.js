@@ -223,7 +223,7 @@ function generatePass()
     }
 
     //Now, for the rest of the password, i get one random char from the complete charset (with exclusions)
-    for (var i = chosenCategories.length - 1; i < amount; i++)
+    for (var i = chosenCategories.length; i < amount; i++)
     {
         password += completeCharset.charAt(Math.floor(Math.random() * completeCharset.length))
     }
