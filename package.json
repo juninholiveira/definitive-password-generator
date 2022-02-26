@@ -1,6 +1,6 @@
 {
   "name": "definitive-password-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A complete password generator built for Windows with Electron.",
   "main": "index.js",
   "author": "Leandro Junior",
@@ -13,7 +13,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^17.0.1",
-    "electron-builder": "^22.14.13"
+    "electron-builder": "^22.14.13",
+    "eslint": "^8.10.0"
   },
   "build": {
     "appId": "com.leandrojunior.definitive-password-generator",
