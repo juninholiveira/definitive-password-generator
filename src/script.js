@@ -29,7 +29,7 @@ const ambiguous = [
 	"/",
 	"\\",
 	"'",
-	'"',
+	"\"",
 	"`",
 	"~",
 	",",
@@ -201,28 +201,28 @@ function generatePass() {
 	//I place one char of each categorie on the beginning of the password to make sure that every password will have at least one of each chosen categorie
 	for (var i = 0; i < chosenCategories.length; i++) {
 		switch (chosenCategories[i]) {
-			case "symbols":
-				password += symbols.charAt(
-					Math.floor(Math.random() * symbols.length)
-				)
-				break
-			case "numbers":
-				password += numbers.charAt(
-					Math.floor(Math.random() * numbers.length)
-				)
-				break
-			case "uppercase":
-				password += lettersUppercase.charAt(
-					Math.floor(Math.random() * lettersUppercase.length)
-				)
-				break
-			case "lowercase":
-				password += lettersLowercase.charAt(
-					Math.floor(Math.random() * lettersLowercase.length)
-				)
-				break
-			default:
-				console.log("No categories selected")
+		case "symbols":
+			password += symbols.charAt(
+				Math.floor(Math.random() * symbols.length)
+			)
+			break
+		case "numbers":
+			password += numbers.charAt(
+				Math.floor(Math.random() * numbers.length)
+			)
+			break
+		case "uppercase":
+			password += lettersUppercase.charAt(
+				Math.floor(Math.random() * lettersUppercase.length)
+			)
+			break
+		case "lowercase":
+			password += lettersLowercase.charAt(
+				Math.floor(Math.random() * lettersLowercase.length)
+			)
+			break
+		default:
+			console.log("No categories selected")
 		}
 	}
 
