@@ -237,7 +237,7 @@ function copyPass()
 {
     //I use the function exposed in the preload.js, that uses the clipboard API to write the text to clipboard
     if(password != "")
-        window.clipboard.copyToClipboard(password)
+        navigator.clipboard.writeText(password)
 }
 
 function shuffle(array)

@@ -9,7 +9,7 @@
     "start": "electron .",
     "dist": "electron-builder"
   },
-  "keywords": [], 
+  "keywords": [],
   "license": "MIT",
   "devDependencies": {
     "electron": "^17.0.1",
