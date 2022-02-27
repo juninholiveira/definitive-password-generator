@@ -192,6 +192,11 @@ h1 {
 
 #menu-grid input {
 	height: 60px;
+	/* -webkit-box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.25); 
+	box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.25); */
+	-webkit-filter: drop-shadow(5px 5px 6px rgba(0,0,0,0.4));
+    filter: drop-shadow(5px 5px 6px rgba(0,0,0,0.4));
+	border-radius: 9px;
 }
 
 #menu-grid-buycoffee {
