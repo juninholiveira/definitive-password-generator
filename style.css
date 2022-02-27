@@ -141,6 +141,67 @@ h1 {
 	color: #15ab87;
 }
 
+#menu {
+	position: fixed;
+	margin-top: 7px;
+	right: 14px;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+
+#menu img {
+	width: 100%;
+	height: 100%;
+}
+
+#menu-window {
+	position: absolute;
+	width: 320px;
+	height: 100px;
+	top: 0px;
+	right: 40px;
+	background-color: rgb(255,255,255,0.5);
+	backdrop-filter: blur(5px);
+	border-radius: 10px;
+	cursor: auto;
+	padding: 20px;
+
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.3s;
+}
+
+#menu.active #menu-window {
+	opacity: 1;
+	visibility: visible;
+	transition: 0.3s;
+}
+
+#menu-author {
+	color:#206e5d;
+	margin-bottom: 20px;
+}
+
+#menu-grid {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+#menu-grid input {
+	height: 60px;
+}
+
+#menu-grid-buycoffee {
+	width: 75%;
+}
+
+#menu-grid-github {
+	width: 60px;
+}
+
 #container {
 	margin-top: 20px;
 	padding: 20px 20px 0px 20px;

@@ -1,5 +1,6 @@
-const { ipcRenderer } = require("electron")
-const ipc = ipcRenderer
+//Gets the exposed ipcRenderer in the preload.js
+const ipc = window.myAPI.getIpcRenderer()
+
 const close = document.getElementById("close-button")
 const min = document.getElementById("min-button")
 

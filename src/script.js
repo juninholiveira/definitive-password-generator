@@ -6,9 +6,7 @@ const includeNumbersToggle = document.querySelector("#input-numbers")
 const includeUppercaseToggle = document.querySelector("#input-uppercase")
 const includeLowercaseToggle = document.querySelector("#input-lowercase")
 const excludeSimilarToggle = document.querySelector("#input-exclude-similar")
-const excludeAmbiguousToggle = document.querySelector(
-	"#input-exclude-ambiguous"
-)
+const excludeAmbiguousToggle = document.querySelector("#input-exclude-ambiguous")
 const generateButton = document.querySelector("#button-generate")
 const copyButton = document.querySelector("#button-copy")
 const resultTextarea = document.querySelector("#textarea-result")
@@ -19,27 +17,7 @@ const originalNumbers = "1234567890"
 const originalUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const originalLowercase = "abcdefghijklmnopqrstuvwxyz"
 const similar = ["i", "l", "1", "L", "o", "O", "0"]
-const ambiguous = [
-	"[",
-	"]",
-	"{",
-	"}",
-	"(",
-	")",
-	"/",
-	"\\",
-	"'",
-	"\"",
-	"`",
-	"~",
-	",",
-	";",
-	":",
-	".",
-	"<",
-	">",
-]
-
+const ambiguous = ["[","]","{","}","(",")","/","\\","'","\"","`","~",",",";",":",".","<",">",]
 let symbols = "`~!@#$%^&*()-_=+[{]}\\;:',<.>/?"
 let numbers = "1234567890"
 let lettersUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
