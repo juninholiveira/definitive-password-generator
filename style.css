@@ -273,6 +273,12 @@ h1 {
 	height: 50%;
 }
 
+#button-copy:disabled {
+	color: #bebebe;
+	background-color: #E3E3E3;
+	pointer-events: none;
+}
+
 #footer-result {
 	flex-grow: 1;
 	margin-left: 20px;

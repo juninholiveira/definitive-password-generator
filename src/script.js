@@ -92,6 +92,7 @@ function initialSetup() {
 	excludeSimilarToggle.checked = true
 	excludeAmbiguousToggle.checked = true
 	chosenCategories = ["symbols", "numbers", "uppercase", "lowercase"]
+	copyButton.disabled = true
 }
 
 //Get the parameters setted on the interface and store in the variables used by the generatePass()
@@ -235,6 +236,9 @@ function generatePass() {
 
 	//Places the result password in the interface
 	resultTextarea.innerText = password
+
+	//Activates the Copy button
+	copyButton.disabled = false
 }
 
 //Copies the generated password to the clipboard
