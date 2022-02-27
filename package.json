@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Leandro Junior",
   "scripts": {
-    "dev": "electron .",
     "start": "electron .",
     "dist": "electron-builder"
   },
@@ -21,7 +20,7 @@
     "productName": "Definitive Password Generator",
     "target": "nsis",
     "directories": {
-      "output": "build"
+      "output": "dist"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,

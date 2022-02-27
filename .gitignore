@@ -1,2 +1,7 @@
+#directories
 node_modules
-build
+dist
+
+#files
+*.tgz
+*.log
