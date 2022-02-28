@@ -1,6 +1,6 @@
 {
   "name": "definitive-password-generator",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A complete password generator built for Windows with Electron.",
   "main": "index.js",
   "author": "Leandro Junior",
@@ -29,5 +29,8 @@
       "installerIcon": "icon.ico",
       "uninstallerIcon": "icon.ico"
     }
+  },
+  "dependencies": {
+    "electron-json-storage": "^4.5.0"
   }
 }

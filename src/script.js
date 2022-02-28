@@ -1,3 +1,7 @@
+const jsonStorage = window.myAPI.getJsonStorage()
+const path = window.myAPI.getPath()
+jsonStorage.setDataPath(path)
+
 //HTML elements gathered from the DOM
 const amountInput = document.querySelector("#input-amount")
 const passSafetyText = document.querySelector("#pass-safety")
@@ -59,9 +63,34 @@ let chosenCategories = ["symbols", "numbers", "uppercase", "lowercase"]
 initialSetup()
 getValuesFromInterface()
 
+//Get the specified json object from the local storage in an async function
+function getLocalValue(key) {
+	jsonStorage.get(key, function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = Number(data[key])
+			amountInput.value = i
+			amount = i
+			changePassSafetyText()
+		}
+	})
+}
+
 //Sets the input and checkboxes of the interface with the default values
 function initialSetup() {
-	amountInput.setAttribute("value", 16)
+
+	//amount
+	// let i = getLocalValue("amount", function(result){
+	// 	console.log(result)
+	// 	return result
+	// })
+	// console.log(i)
+	amountInput.value = 16
+	getLocalValue("amount")
+	// amount = amountInput.value
+	// changePassSafetyText()
+	
+
 	passSafetyText.innerText = "STRONG"
 	includeSymbolsToggle.checked = true
 	includeNumbersToggle.checked = true
@@ -73,10 +102,32 @@ function initialSetup() {
 	copyButton.disabled = true
 }
 
+//Changes the pass safety label with the appropriate text and color
+function changePassSafetyText() {
+	if (amount <= passWeakNumber) {
+		passSafetyText.innerText = passWeakText
+		passSafetyText.style.color = passWeakColor
+	} else if (amount <= passMediumNumber) {
+		passSafetyText.innerText = passMediumText
+		passSafetyText.style.color = passMediumColor
+	} else if (amount <= passStrongNumber) {
+		passSafetyText.innerText = passStrongText
+		passSafetyText.style.color = passStrongColor
+	} else if (amount <= passVeryStrongNumber) {
+		passSafetyText.innerText = passVeryStrongText
+		passSafetyText.style.color = passVeryStrongColor
+	} else if (amount <= passOverkillNumber) {
+		passSafetyText.innerText = passOverkillText
+		passSafetyText.style.color = passOverkillColor
+	} else {
+		passSafetyText.innerText = passMaximumText
+		passSafetyText.style.color = passMaximumColor
+	}
+}
+
 //Get the parameters setted on the interface and store in the variables used by the generatePass()
 function getValuesFromInterface() {
 	//Get the parameters from the interface
-	//amount = Number(amountInput.getAttribute("value"))
 	amount = amountInput.value
 	includeSymbols = includeSymbolsToggle.checked
 	includeNumbers = includeNumbersToggle.checked
@@ -142,28 +193,18 @@ amountInput.addEventListener("change", () => {
 	else if (amountInput.value > 2048) amountInput.value = 2048
 
 	//Stores the new value
+	//amount = Number(amountInput.value)
 	amount = amountInput.value
+	
+	changePassSafetyText()
 
-	//Changes the pass safety label with the appropriate text and color
-	if (amount <= passWeakNumber) {
-		passSafetyText.innerText = passWeakText
-		passSafetyText.style.color = passWeakColor
-	} else if (amount <= passMediumNumber) {
-		passSafetyText.innerText = passMediumText
-		passSafetyText.style.color = passMediumColor
-	} else if (amount <= passStrongNumber) {
-		passSafetyText.innerText = passStrongText
-		passSafetyText.style.color = passStrongColor
-	} else if (amount <= passVeryStrongNumber) {
-		passSafetyText.innerText = passVeryStrongText
-		passSafetyText.style.color = passVeryStrongColor
-	} else if (amount <= passOverkillNumber) {
-		passSafetyText.innerText = passOverkillText
-		passSafetyText.style.color = passOverkillColor
-	} else {
-		passSafetyText.innerText = passMaximumText
-		passSafetyText.style.color = passMaximumColor
-	}
+	//Saves the amount locally
+	jsonStorage.set("amount", { amount : amount })
+
+})
+includeSymbolsToggle.addEventListener("change", () => {
+	//Saves locally
+	jsonStorage.set("includeSymbols", { includeSymbols: includeSymbolsToggle.checked })
 })
 
 //Main function to generate the random password based on the parameters
