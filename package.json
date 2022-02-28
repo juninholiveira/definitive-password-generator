@@ -15,10 +15,17 @@
     "electron-builder": "^22.14.13",
     "eslint": "^8.10.0"
   },
+  "dependencies": {
+    "appdata-path": "^1.0.0",
+    "electron-json-storage": "^4.5.0"
+  },
   "build": {
     "appId": "com.leandrojunior.definitive-password-generator",
     "productName": "Definitive Password Generator",
     "target": "nsis",
+    "files": [
+      "!resources"
+    ],
     "directories": {
       "output": "dist"
     },
@@ -29,9 +36,5 @@
       "installerIcon": "icon.ico",
       "uninstallerIcon": "icon.ico"
     }
-  },
-  "dependencies": {
-    "appdata-path": "^1.0.0",
-    "electron-json-storage": "^4.5.0"
   }
 }
