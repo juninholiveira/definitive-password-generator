@@ -72,8 +72,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.amount
-			amountInput.value = i
-			amount = i
+			if(i != undefined) amountInput.value = i
+			else amountInput.value = 16
 			changePassSafetyText()
 		}
 	})
@@ -84,8 +84,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.includeSymbols
-			includeSymbolsToggle.checked = i
-			includeSymbols = i
+			if(i != undefined) includeSymbolsToggle.checked = i
+			else includeSymbolsToggle.checked = true
 		}
 	})
 
@@ -95,8 +95,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.includeNumbers
-			includeNumbersToggle.checked = i
-			includeNumbers = i
+			if(i != undefined) includeNumbersToggle.checked = i
+			else includeNumbersToggle.checked = true
 		}
 	})
 
@@ -106,8 +106,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.includeUppercase
-			includeUppercaseToggle.checked = i
-			includeUppercase = i
+			if(i != undefined) includeUppercaseToggle.checked = i
+			else includeUppercaseToggle.checked = true
 		}
 	})
 
@@ -117,8 +117,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.includeLowercase
-			includeLowercaseToggle.checked = i
-			includeLowercase = i
+			if(i != undefined) includeLowercaseToggle.checked = i
+			else includeLowercaseToggle.checked = true
 		}
 	})
 
@@ -128,8 +128,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.excludeSimilar
-			excludeSimilarToggle.checked = i
-			excludeSimilar = i
+			if(i != undefined) excludeSimilarToggle.checked = i
+			else excludeSimilarToggle.checked = true
 		}
 	})
 
@@ -139,8 +139,8 @@ function initialSetup() {
 		if (error) throw error
 		if (data) {
 			let i = data.excludeAmbiguous
-			excludeAmbiguousToggle.checked = i
-			excludeAmbiguous = i
+			if(i != undefined) excludeAmbiguousToggle.checked = i
+			else excludeAmbiguousToggle.checked = true
 		}
 	})
 
@@ -149,19 +149,19 @@ function initialSetup() {
 
 //Changes the pass safety label with the appropriate text and color
 function changePassSafetyText() {
-	if (amount <= passWeakNumber) {
+	if (amountInput.value <= passWeakNumber) {
 		passSafetyText.innerText = passWeakText
 		passSafetyText.style.color = passWeakColor
-	} else if (amount <= passMediumNumber) {
+	} else if (amountInput.value <= passMediumNumber) {
 		passSafetyText.innerText = passMediumText
 		passSafetyText.style.color = passMediumColor
-	} else if (amount <= passStrongNumber) {
+	} else if (amountInput.value <= passStrongNumber) {
 		passSafetyText.innerText = passStrongText
 		passSafetyText.style.color = passStrongColor
-	} else if (amount <= passVeryStrongNumber) {
+	} else if (amountInput.value <= passVeryStrongNumber) {
 		passSafetyText.innerText = passVeryStrongText
 		passSafetyText.style.color = passVeryStrongColor
-	} else if (amount <= passOverkillNumber) {
+	} else if (amountInput.value <= passOverkillNumber) {
 		passSafetyText.innerText = passOverkillText
 		passSafetyText.style.color = passOverkillColor
 	} else {
