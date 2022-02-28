@@ -1,6 +1,7 @@
 const { ipcRenderer, shell, contextBridge } = require("electron")
 const path = require("path")
 const jsonStorage = require("electron-json-storage")
+const getAppDataPath = require("appdata-path")
 
 //const defaultAppDataPath = app.getAppPath
 
@@ -17,7 +18,7 @@ contextBridge.exposeInMainWorld("myAPI", {
 		return jsonStorage
 	},
 	getPath: () => {
-		return __dirname
+		return getAppDataPath("Definitive Password Generator")
 	}
 
 })
