@@ -61,44 +61,89 @@ let excludeAmbiguous = true
 let chosenCategories = ["symbols", "numbers", "uppercase", "lowercase"]
 
 initialSetup()
-getValuesFromInterface()
 
-//Get the specified json object from the local storage in an async function
-function getLocalValue(key) {
-	jsonStorage.get(key, function (error, data){
+//Sets the input and checkboxes of the interface with the default values
+function initialSetup() {
+
+	//Amount
+	amountInput.value = 16
+	passSafetyText.innerText = "STRONG"
+	jsonStorage.get("dpgLocalStorageAmount", function (error, data){
 		if (error) throw error
 		if (data) {
-			let i = Number(data[key])
+			let i = data.amount
 			amountInput.value = i
 			amount = i
 			changePassSafetyText()
 		}
 	})
-}
-
-//Sets the input and checkboxes of the interface with the default values
-function initialSetup() {
-
-	//amount
-	// let i = getLocalValue("amount", function(result){
-	// 	console.log(result)
-	// 	return result
-	// })
-	// console.log(i)
-	amountInput.value = 16
-	getLocalValue("amount")
-	// amount = amountInput.value
-	// changePassSafetyText()
 	
-
-	passSafetyText.innerText = "STRONG"
+	//Include Symbols
 	includeSymbolsToggle.checked = true
+	jsonStorage.get("dpgLocalStorageIncludeSymbols", function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = data.includeSymbols
+			includeSymbolsToggle.checked = i
+			includeSymbols = i
+		}
+	})
+
+	//Include Numbers
 	includeNumbersToggle.checked = true
+	jsonStorage.get("dpgLocalStorageIncludeNumbers", function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = data.includeNumbers
+			includeNumbersToggle.checked = i
+			includeNumbers = i
+		}
+	})
+
+	//Include Uppercase
 	includeUppercaseToggle.checked = true
+	jsonStorage.get("dpgLocalStorageIncludeUppercase", function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = data.includeUppercase
+			includeUppercaseToggle.checked = i
+			includeUppercase = i
+		}
+	})
+
+	//Include Lowercase
 	includeLowercaseToggle.checked = true
+	jsonStorage.get("dpgLocalStorageIncludeLowercase", function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = data.includeLowercase
+			includeLowercaseToggle.checked = i
+			includeLowercase = i
+		}
+	})
+
+	//Exclude Similar
 	excludeSimilarToggle.checked = true
+	jsonStorage.get("dpgLocalStorageExcludeSimilar", function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = data.excludeSimilar
+			excludeSimilarToggle.checked = i
+			excludeSimilar = i
+		}
+	})
+
+	//Exclude Ambiguous
 	excludeAmbiguousToggle.checked = true
-	chosenCategories = ["symbols", "numbers", "uppercase", "lowercase"]
+	jsonStorage.get("dpgLocalStorageExcludeAmbiguous", function (error, data){
+		if (error) throw error
+		if (data) {
+			let i = data.excludeAmbiguous
+			excludeAmbiguousToggle.checked = i
+			excludeAmbiguous = i
+		}
+	})
+
 	copyButton.disabled = true
 }
 
@@ -162,6 +207,7 @@ function getValuesFromInterface() {
 			lettersLowercase = lettersLowercase.replace(item.toString(), "")
 		})
 	}
+
 	if (includeSymbols) {
 		chosenCategories.push("symbols")
 		completeCharset += symbols
@@ -199,12 +245,32 @@ amountInput.addEventListener("change", () => {
 	changePassSafetyText()
 
 	//Saves the amount locally
-	jsonStorage.set("amount", { amount : amount })
+	jsonStorage.set("dpgLocalStorageAmount", { amount : Number(amount) })
 
 })
 includeSymbolsToggle.addEventListener("change", () => {
 	//Saves locally
-	jsonStorage.set("includeSymbols", { includeSymbols: includeSymbolsToggle.checked })
+	jsonStorage.set("dpgLocalStorageIncludeSymbols", { includeSymbols: includeSymbolsToggle.checked })
+})
+includeNumbersToggle.addEventListener("change", () => {
+	//Saves locally
+	jsonStorage.set("dpgLocalStorageIncludeNumbers", { includeNumbers: includeNumbersToggle.checked })
+})
+includeUppercaseToggle.addEventListener("change", () => {
+	//Saves locally
+	jsonStorage.set("dpgLocalStorageIncludeUppercase", { includeUppercase: includeUppercaseToggle.checked })
+})
+includeLowercaseToggle.addEventListener("change", () => {
+	//Saves locally
+	jsonStorage.set("dpgLocalStorageIncludeLowercase", { includeLowercase: includeLowercaseToggle.checked })
+})
+excludeSimilarToggle.addEventListener("change", () => {
+	//Saves locally
+	jsonStorage.set("dpgLocalStorageExcludeSimilar", { excludeSimilar: excludeSimilarToggle.checked })
+})
+excludeAmbiguousToggle.addEventListener("change", () => {
+	//Saves locally
+	jsonStorage.set("dpgLocalStorageExcludeAmbiguous", { excludeAmbiguous: excludeAmbiguousToggle.checked })
 })
 
 //Main function to generate the random password based on the parameters
