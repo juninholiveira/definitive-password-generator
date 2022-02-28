@@ -50,15 +50,15 @@ const passOverkillNumber = 2047
 const passMaximumText = "STORING NUCLEAR CODES, I SEE..."
 const passMaximumColor = "rgb(0,0,0)"
 
-//Booleans for the inputs
+//Variables that will store the parameters to be used directly by the Generate algorithm
 let amount
-let includeSymbols = true
-let includeNumbers = true
-let includeUppercase = true
-let includeLowercase = true
-let excludeSimilar = true
-let excludeAmbiguous = true
-let chosenCategories = ["symbols", "numbers", "uppercase", "lowercase"]
+let includeSymbols
+let includeNumbers
+let includeUppercase
+let includeLowercase
+let excludeSimilar
+let excludeAmbiguous
+let chosenCategories
 
 initialSetup()
 
@@ -228,6 +228,13 @@ function getValuesFromInterface() {
 
 //create the events when the actions are performed in the GUI
 generateButton.addEventListener("click", () => {
+
+	//Updates the parameters
+	getValuesFromInterface()
+
+	//Blocks the Generate Button from working in case no category is selected
+	if(chosenCategories.length == 0) return
+
 	generatePass()
 })
 copyButton.addEventListener("click", () => {
@@ -275,8 +282,6 @@ excludeAmbiguousToggle.addEventListener("change", () => {
 
 //Main function to generate the random password based on the parameters
 function generatePass() {
-	//Updates the parameters
-	getValuesFromInterface()
 
 	//Erases the password in memory
 	password = ""
