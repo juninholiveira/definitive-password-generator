@@ -9,7 +9,7 @@
 Definitive Password Generator is a simple and lightweight app built with Electron (currently only available for Windows) that generates random and secure passwords for your needs.
 
 <p align="center">
-<img src="src/imgs/screenshot01.png" alt="Definitive Password Generator" height="700">
+<img src="resources/screenshot01.png" alt="Definitive Password Generator" height="700">
 </p>
 
 ## Installation
@@ -18,7 +18,7 @@ Download from [Github Releases](https://github.com/juninholiveira/definitive-pas
 ## Features
 
 <p align="center">
-<img src="src/imgs/quickgeneration.gif" alt="Quick Generation on the Tray" height="300">
+<img src="resources/quickgeneration.gif" alt="Quick Generation on the Tray" height="300">
 </p>
 
 - Simple, lightweight and fast
