@@ -26,7 +26,14 @@ function createWindow() {
 		backgroundColor: "#FFF",
 		icon: "./src/icons/png/128x128.png",
 		frame: false,
-		resizable: false,
+
+		//Bug causing the mainWindow to not have rounded corners in case Resizable is false
+		resizable: true,
+		minWidth: 500,
+		maxWidth: 500,
+		minHeight: 800,
+		maxHeight: 800,
+
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
