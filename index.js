@@ -39,6 +39,10 @@ function createWindow() {
 		minHeight: 800,
 		maxHeight: 800,
 
+		//Stops F11 from working and putting the windows in the top-left corner
+		fullscreen: false,
+		fullscreenable: false,
+
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
