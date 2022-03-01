@@ -29,7 +29,7 @@ Download from [Github Releases](https://github.com/juninholiveira/definitive-pas
     - Include Numbers: Whether or not to include numbers
     - Include Uppercase: Whether or not to include Upper-Case characters
     - Include Lowercase: Whether or not to include Lower-Case characters
-    - Exclude Similar: Exclude from the special the characters, the ones that are visually similar, like "i l L o O 0". This is recomended, since some fonts used in passwords might be confusing to identify
+    - Exclude Similar: excludes characters visually similar, such as "i l L o O 0". This is recomended, since some fonts used in passwords fields might be confusing to identify
     - Exclude Ambiguous: Exclude special characters that might be problematic in passwords
 - Parameters are saved locally on your machine at "C:/Users/%USERPROFILE%/AppData/Roaming/Definitive Password Generator". So next time you open the app, it will restore the previous parameters.
 
