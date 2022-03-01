@@ -1,6 +1,7 @@
 const { ipcRenderer, shell, contextBridge } = require("electron")
 const jsonStorage = require("electron-json-storage")
 const getAppDataPath = require("appdata-path")
+const clipboard = require("electron").clipboard
 
 contextBridge.exposeInMainWorld("myAPI", {
 	//Used to open links in the default browser
@@ -21,5 +22,10 @@ contextBridge.exposeInMainWorld("myAPI", {
 	//Used to get the AppData/Roaming folder on Windows
 	getPath: () => {
 		return getAppDataPath("Definitive Password Generator")
+	},
+	copyToClipboard: (password) => {
+		if(password)
+			clipboard.writeText(password)
 	}
+
 })

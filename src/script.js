@@ -283,14 +283,12 @@ excludeAmbiguousToggle.addEventListener("change", () => {
 
 window.myAPI.onQuickGeneration(() => {
 	generatePass()
-	copyPass()
-	console.log("Mensagem recebida")
-	alert("teste")
+	window.myAPI.copyToClipboard(password)
 })
 
 //Main function to generate the random password based on the parameters
 function generatePass() {
-	
+
 	getValuesFromInterface()
 
 	//Erases the password in memory
