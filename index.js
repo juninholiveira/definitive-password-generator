@@ -1,21 +1,16 @@
-const { app, BrowserWindow, ipcMain } = require("electron")
+const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } = require("electron")
 const path = require("path")
 const ipc = ipcMain
 
 let mainWindow
+let tray
 
 app.whenReady().then(() => {
 	createWindow()
 	app.on("activate", () => {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow()
 	})
-})
-
-//Quit when all windows are closed.
-app.on("window-all-closed", () => {
-	//On macOS it is common for applications and their menu bar
-	//to stay active until the user quits explicitly with Cmd + Q
-	if (process.platform !== "darwin") app.quit()
+	createTray()
 })
 
 app.on("activate", () => {
@@ -31,7 +26,7 @@ function createWindow() {
 		backgroundColor: "#FFF",
 		icon: "./src/icons/png/128x128.png",
 		frame: false,
-		resizable: true,
+		resizable: false,
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
@@ -39,31 +34,48 @@ function createWindow() {
 		},
 	})
 
-	ipc.on("closeApp", () => {
-		mainWindow.close()
+	//This event will hide the app, and not close it for good (to close it you need to right-click on tray and Quit)
+	ipc.on("hideApp", (event) => {
+		event.preventDefault()
+		mainWindow.hide()
 	})
 
+	//This event will minimize the MainWindow to the tasbar
 	ipc.on("minApp", () => {
 		mainWindow.minimize()
 	})
 
-	ipc.on("maxApp", () => {
-		if (mainWindow.isMaximized()) {
-			mainWindow.webContents.send("changeIr")
-			mainWindow.restore()
-		} else {
-			mainWindow.webContents.send("changeImx")
-			mainWindow.maximize()
-		}
-	})
-
+	//Loads the index.html page on the mainWindow, which is the main page of this app
 	mainWindow.loadURL(`file://${__dirname}/index.html`)
+}
 
-	//Emitted when the window is closed.
-	mainWindow.on("closed", () => {
-		//Dereference the window object, usually you would store windows
-		//in an array if your app supports multi windows, this is the time
-		//when you should delete the corresponding element.
-		mainWindow = null
+function createTray() {
+
+	//Gets the icon to use in the tray
+	const icon = nativeImage.createFromPath("./src/icons/win/icon.ico")
+
+	//Creates the tray
+	tray = new Tray(icon)
+
+	//Creates the context menu
+	const contextMenu = Menu.buildFromTemplate([
+		{ label: "Generate and Copy Password", type: "normal", click: () => {
+			console.log("Generate PSW on Tray clicked")
+		}},
+		{ "type": "separator" },
+		{ label: "Quit", type: "normal", click:  () => {
+			app.quit()
+		}}
+	])
+
+	//Adds the newly created ContextMenu to the tray
+	tray.setContextMenu(contextMenu)
+
+	tray.setToolTip("Definitive Password Generator")
+	tray.setTitle("Definitive Password Generator")	//MacOS
+
+	//When the icon on tray is clicked, opens the mainWindow again
+	tray.on("click", () => {
+		mainWindow.show()
 	})
 }
