@@ -4,6 +4,7 @@ const ipc = ipcMain
 
 let mainWindow
 let tray
+let isQuiting
 
 app.whenReady().then(() => {
 	createWindow()
@@ -17,6 +18,10 @@ app.on("activate", () => {
 	//On macOS it's common to re-create a window in the app when the
 	//dock icon is clicked and there are no other windows open.
 	if (mainWindow === null) createWindow()
+})
+
+app.on("before-quit", function () {
+	isQuiting = true
 })
 
 function createWindow() {
@@ -67,11 +72,12 @@ function createTray() {
 	//Creates the context menu
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: "Generate and Copy Password", type: "normal", click: () => {
-			console.log("Generate PSW on Tray clicked")
+			mainWindow.webContents.send("quickGeneration")
 		}},
 		{ "type": "separator" },
 		{ label: "Quit", type: "normal", click:  () => {
-			app.quit()
+			if (!isQuiting)
+				app.quit()
 		}}
 	])
 

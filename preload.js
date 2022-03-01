@@ -11,6 +11,9 @@ contextBridge.exposeInMainWorld("myAPI", {
 	getIpcRenderer: () => {
 		return ipcRenderer
 	},
+	onQuickGeneration: (fn) => {
+		ipcRenderer.on("quickGeneration", () => fn())
+	},
 	//Used to save to JSON the current parameters
 	getJsonStorage: () => {
 		return jsonStorage

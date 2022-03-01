@@ -280,8 +280,18 @@ excludeAmbiguousToggle.addEventListener("change", () => {
 	jsonStorage.set("dpgLocalStorageExcludeAmbiguous", { excludeAmbiguous: excludeAmbiguousToggle.checked })
 })
 
+
+window.myAPI.onQuickGeneration(() => {
+	generatePass()
+	copyPass()
+	console.log("Mensagem recebida")
+	alert("teste")
+})
+
 //Main function to generate the random password based on the parameters
 function generatePass() {
+	
+	getValuesFromInterface()
 
 	//Erases the password in memory
 	password = ""
@@ -335,7 +345,6 @@ function generatePass() {
 function copyPass() {
 	//I use the function exposed in the preload.js, that uses the clipboard API to write the text to clipboard
 	if (password != "") navigator.clipboard.writeText(password)
-
 }
 
 function shuffle(array) {
