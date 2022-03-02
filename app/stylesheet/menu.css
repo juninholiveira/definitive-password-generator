@@ -1,0 +1,65 @@
+@import url("style.css");
+
+#menu {
+	position: fixed;
+	margin-top: 7px;
+	right: 14px;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+
+#menu img {
+	width: 100%;
+	height: 100%;
+}
+
+#menu-window {
+	position: absolute;
+	width: 320px;
+	height: 100px;
+	top: 0px;
+	right: 40px;
+	background-color: rgb(255,255,255,0.5);
+	backdrop-filter: blur(5px);
+	border-radius: 10px;
+	cursor: auto;
+	padding: 20px;
+
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.3s;
+}
+
+#menu.active #menu-window {
+	opacity: 1;
+	visibility: visible;
+	transition: 0.3s;
+}
+
+#menu-author {
+	color:#206e5d;
+	margin-bottom: 20px;
+}
+
+#menu-grid {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+#menu-grid input {
+	height: 60px;
+	-webkit-filter: drop-shadow(5px 5px 6px rgba(0,0,0,0.4));
+    filter: drop-shadow(5px 5px 6px rgba(0,0,0,0.4));
+	border-radius: 9px;
+}
+
+#menu-grid-buycoffee {
+	width: 75%;
+}
+
+#menu-grid-github {
+	width: 60px;
+}
