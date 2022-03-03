@@ -23,26 +23,7 @@ const originalNumbers = "1234567890"
 const originalUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const originalLowercase = "abcdefghijklmnopqrstuvwxyz"
 const similar = ["i", "l", "1", "L", "o", "O", "0"]
-const ambiguous = [
-	"[",
-	"]",
-	"{",
-	"}",
-	"(",
-	")",
-	"/",
-	"\\",
-	"'",
-	'"',
-	"`",
-	"~",
-	",",
-	";",
-	":",
-	".",
-	"<",
-	">",
-]
+const ambiguous = ["[","]","{","}","(",")","/","\\","'","\"","`","~",",",";",":",".","<",">",]
 let symbols = "`~!@#$%^&*()-_=+[{]}\\;:',<.>/?"
 let numbers = "1234567890"
 let lettersUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -88,7 +69,7 @@ function initialSetup() {
 	//Amount
 	amountInput.value = 16
 	passSafetyText.innerText = "STRONG"
-	jsonStorage.get("dpgLocalStorageAmount", function (error, data) {
+	jsonStorage.get("dpgLocalStorageAmount", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.amount
@@ -100,7 +81,7 @@ function initialSetup() {
 
 	//Include Symbols
 	includeSymbolsToggle.checked = true
-	jsonStorage.get("dpgLocalStorageIncludeSymbols", function (error, data) {
+	jsonStorage.get("dpgLocalStorageIncludeSymbols", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.includeSymbols
@@ -111,7 +92,7 @@ function initialSetup() {
 
 	//Include Numbers
 	includeNumbersToggle.checked = true
-	jsonStorage.get("dpgLocalStorageIncludeNumbers", function (error, data) {
+	jsonStorage.get("dpgLocalStorageIncludeNumbers", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.includeNumbers
@@ -122,7 +103,7 @@ function initialSetup() {
 
 	//Include Uppercase
 	includeUppercaseToggle.checked = true
-	jsonStorage.get("dpgLocalStorageIncludeUppercase", function (error, data) {
+	jsonStorage.get("dpgLocalStorageIncludeUppercase", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.includeUppercase
@@ -133,7 +114,7 @@ function initialSetup() {
 
 	//Include Lowercase
 	includeLowercaseToggle.checked = true
-	jsonStorage.get("dpgLocalStorageIncludeLowercase", function (error, data) {
+	jsonStorage.get("dpgLocalStorageIncludeLowercase", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.includeLowercase
@@ -144,7 +125,7 @@ function initialSetup() {
 
 	//Exclude Similar
 	excludeSimilarToggle.checked = true
-	jsonStorage.get("dpgLocalStorageExcludeSimilar", function (error, data) {
+	jsonStorage.get("dpgLocalStorageExcludeSimilar", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.excludeSimilar
@@ -155,7 +136,7 @@ function initialSetup() {
 
 	//Exclude Ambiguous
 	excludeAmbiguousToggle.checked = true
-	jsonStorage.get("dpgLocalStorageExcludeAmbiguous", function (error, data) {
+	jsonStorage.get("dpgLocalStorageExcludeAmbiguous", function(error, data) {
 		if (error) throw error
 		if (data) {
 			let i = data.excludeAmbiguous
@@ -211,7 +192,7 @@ function getValuesFromInterface() {
 
 	if (excludeSimilar) {
 		//exclude the similar chars from the charset groups
-		similar.forEach((item) => {
+		similar.forEach(item => {
 			symbols = symbols.replace(item.toString(), "")
 			numbers = numbers.replace(item.toString(), "")
 			lettersUppercase = lettersUppercase.replace(item.toString(), "")
@@ -220,7 +201,7 @@ function getValuesFromInterface() {
 	}
 	if (excludeAmbiguous) {
 		//exclude the ambiguous chars from the charset groups
-		ambiguous.forEach((item) => {
+		ambiguous.forEach(item => {
 			symbols = symbols.replace(item.toString(), "")
 			numbers = numbers.replace(item.toString(), "")
 			lettersUppercase = lettersUppercase.replace(item.toString(), "")
@@ -328,28 +309,28 @@ function generatePass() {
 	//I place one char of each categorie on the beginning of the password to make sure that every password will have at least one of each chosen categorie
 	for (var i = 0; i < chosenCategories.length; i++) {
 		switch (chosenCategories[i]) {
-			case "symbols":
-				password += symbols.charAt(
-					Math.floor(Math.random() * symbols.length)
-				)
-				break
-			case "numbers":
-				password += numbers.charAt(
-					Math.floor(Math.random() * numbers.length)
-				)
-				break
-			case "uppercase":
-				password += lettersUppercase.charAt(
-					Math.floor(Math.random() * lettersUppercase.length)
-				)
-				break
-			case "lowercase":
-				password += lettersLowercase.charAt(
-					Math.floor(Math.random() * lettersLowercase.length)
-				)
-				break
-			default:
-				console.log("No categories selected")
+		case "symbols":
+			password += symbols.charAt(
+				Math.floor(Math.random() * symbols.length)
+			)
+			break
+		case "numbers":
+			password += numbers.charAt(
+				Math.floor(Math.random() * numbers.length)
+			)
+			break
+		case "uppercase":
+			password += lettersUppercase.charAt(
+				Math.floor(Math.random() * lettersUppercase.length)
+			)
+			break
+		case "lowercase":
+			password += lettersLowercase.charAt(
+				Math.floor(Math.random() * lettersLowercase.length)
+			)
+			break
+		default:
+			console.log("No categories selected")
 		}
 	}
 

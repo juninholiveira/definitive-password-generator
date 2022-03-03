@@ -5,6 +5,7 @@
   "main": "index.js",
   "author": "Leandro Junior",
   "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
     "start": "electron .",
     "dist": "electron-builder"
   },

@@ -6,7 +6,6 @@ const menuButton = document.querySelector("#menu")
 const buycoffeeButton = document.querySelector("#menu-grid-buycoffee")
 const githubButton = document.querySelector("#menu-grid-github")
 
-
 //Activate and deactive the menuButton
 menuButton.addEventListener("click", () => {
 	menuButton.classList.toggle("active")

@@ -1,4 +1,11 @@
-const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } = require("electron")
+const {
+	app,
+	Tray,
+	Menu,
+	nativeImage,
+	BrowserWindow,
+	ipcMain,
+} = require("electron")
 const path = require("path")
 const ipc = ipcMain
 
@@ -66,30 +73,38 @@ function createWindow() {
 }
 
 function createTray() {
-
 	//Gets the icon to use in the tray
-	const icon = nativeImage.createFromPath(path.join(__dirname,"src","icons", "png", "32x32.png"))
+	const icon = nativeImage.createFromPath(
+		path.join(__dirname, "src", "icons", "png", "32x32.png")
+	)
 
 	//Creates the tray
 	tray = new Tray(icon)
 
 	//Creates the context menu
 	const contextMenu = Menu.buildFromTemplate([
-		{ label: "Generate and Copy Password", type: "normal", click: () => {
-			mainWindow.webContents.send("quickGeneration")
-		}},
-		{ "type": "separator" },
-		{ label: "Quit", type: "normal", click:  () => {
-			if (!isQuiting)
-				app.quit()
-		}}
+		{
+			label: "Generate and Copy Password",
+			type: "normal",
+			click: () => {
+				mainWindow.webContents.send("quickGeneration")
+			},
+		},
+		{ type: "separator" },
+		{
+			label: "Quit",
+			type: "normal",
+			click: () => {
+				if (!isQuiting) app.quit()
+			},
+		},
 	])
 
 	//Adds the newly created ContextMenu to the tray
 	tray.setContextMenu(contextMenu)
 
 	tray.setToolTip("Definitive Password Generator")
-	tray.setTitle("Definitive Password Generator")	//MacOS
+	tray.setTitle("Definitive Password Generator") //MacOS
 
 	//When the icon on tray is clicked, opens the mainWindow again
 	tray.on("click", () => {
