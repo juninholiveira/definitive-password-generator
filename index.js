@@ -75,7 +75,7 @@ function createWindow() {
 function createTray() {
 	//Gets the icon to use in the tray
 	const icon = nativeImage.createFromPath(
-		path.join(__dirname, "src", "icons", "png", "32x32.png")
+		path.join(__dirname, "build", "icon.png")
 	)
 
 	//Creates the tray

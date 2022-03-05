@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Leandro Junior",
   "scripts": {
-    "lint": "eslint --ext .js --ignore-path .gitignore .",
     "start": "electron .",
     "dist": "electron-builder"
   },
@@ -22,20 +21,48 @@
   },
   "build": {
     "appId": "com.leandrojunior.definitive-password-generator",
+    "artifactName": "${productName}_${version}_${os}.${ext}",
     "productName": "Definitive Password Generator",
-    "target": "nsis",
+    "win": {
+      "target": [
+        "appx"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
+      "icon": "build/512x512.png",
+      "maintainer": "Leandro Junior",
+      "category": "Utility"
+    },
     "files": [
-      "!resources"
+      "!resources",
+      "!README.md"
     ],
     "directories": {
       "output": "dist"
     },
     "nsis": {
+      "artifactName": "${productName}_${version}_${os}_setup.${ext}",
       "allowToChangeInstallationDirectory": true,
       "oneClick": false,
       "license": "LICENSE",
       "installerIcon": "icon.ico",
       "uninstallerIcon": "icon.ico"
+    },
+    "portable": {
+      "artifactName": "${productName}_${version}_${os}_portable.${ext}"
+    },
+    "appx": {
+      "artifactName": "${productName}_${version}_${os}_appx.${ext}",
+      "identityName": "20269LeandroJnior.DefinitivePasswordGenerator",
+      "publisher": "CN=EC710D6E-A709-4865-A108-19BBFC21DC24",
+      "publisherDisplayName": "Leandro Júnior",
+      "applicationId": "DefinitivePasswordGenerator",
+      "displayName": "Definitive Password Generator"
     }
   }
 }

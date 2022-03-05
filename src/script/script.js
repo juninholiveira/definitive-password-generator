@@ -10,9 +10,7 @@ const includeNumbersToggle = document.querySelector("#input-numbers")
 const includeUppercaseToggle = document.querySelector("#input-uppercase")
 const includeLowercaseToggle = document.querySelector("#input-lowercase")
 const excludeSimilarToggle = document.querySelector("#input-exclude-similar")
-const excludeAmbiguousToggle = document.querySelector(
-	"#input-exclude-ambiguous"
-)
+const excludeAmbiguousToggle = document.querySelector("#input-exclude-ambiguous")
 const generateButton = document.querySelector("#button-generate")
 const copyButton = document.querySelector("#button-copy")
 const resultTextarea = document.querySelector("#textarea-result")
