@@ -1,17 +1,11 @@
-const {
-	app,
-	Tray,
-	Menu,
-	nativeImage,
-	BrowserWindow,
-	ipcMain,
-} = require("electron")
+const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } = require("electron")
 const path = require("path")
 const ipc = ipcMain
 
 let mainWindow
 let tray
 let isQuiting
+let icon
 
 app.whenReady().then(() => {
 	createWindow()
@@ -36,7 +30,7 @@ function createWindow() {
 		width: 500,
 		height: 800,
 		backgroundColor: "#FFF",
-		icon: "./src/icons/png/128x128.png",
+		icon: "./build/icon.png",
 		frame: false,
 
 		//Bug causing the mainWindow to not have rounded corners in case Resizable is false
@@ -74,9 +68,7 @@ function createWindow() {
 
 function createTray() {
 	//Gets the icon to use in the tray
-	const icon = nativeImage.createFromPath(
-		path.join(__dirname, "build", "icon.png")
-	)
+	icon = nativeImage.createFromPath(path.join(__dirname, "src", "icons", "32x32.png"))
 
 	//Creates the tray
 	tray = new Tray(icon)

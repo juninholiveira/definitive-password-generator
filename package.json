@@ -25,6 +25,8 @@
     "productName": "Definitive Password Generator",
     "win": {
       "target": [
+        "nsis",
+        "portable",
         "appx"
       ]
     },

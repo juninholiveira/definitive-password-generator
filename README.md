@@ -1,5 +1,5 @@
 <p align="center">
-<img src="src/icons/png/256x256.png" alt="Definitive Password Generator" height="100">
+<img src="build/icon.png" alt="Definitive Password Generator" height="100">
 </p>
 
 <h1 align="center">Definitive Password Generator</h1>
