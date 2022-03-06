@@ -30,7 +30,7 @@ function createWindow() {
 		width: 500,
 		height: 800,
 		backgroundColor: "#FFF",
-		icon: "./build/icon.png",
+		icon: "././build/icon.png",
 		frame: false,
 
 		//Bug causing the mainWindow to not have rounded corners in case Resizable is false
@@ -68,7 +68,7 @@ function createWindow() {
 
 function createTray() {
 	//Gets the icon to use in the tray
-	icon = nativeImage.createFromPath(path.join(__dirname, "src", "icons", "32x32.png"))
+	icon = nativeImage.createFromPath(path.join(__dirname, "icons", "32x32.png"))
 
 	//Creates the tray
 	tray = new Tray(icon)
