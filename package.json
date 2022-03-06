@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "appdata-path": "^1.0.0",
+    "electron-acrylic-window": "^0.5.11",
     "electron-json-storage": "^4.5.0"
   },
   "build": {
