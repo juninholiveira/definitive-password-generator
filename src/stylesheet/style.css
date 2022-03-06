@@ -7,8 +7,8 @@ body {
 			linear,
 			left bottom,
 			right top,
-			from(rgba(71, 153, 233, 1)),
-			to(rgba(101, 244, 205, 1))
+			from(rgba(71, 153, 233, 0)),
+			to(rgba(101, 244, 205, 0))
 		)
 		fixed;
 

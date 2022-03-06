@@ -1,6 +1,7 @@
-const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } = require("electron")
+const { app, Tray, Menu, nativeImage, ipcMain } = require("electron")
 const path = require("path")
 const ipc = ipcMain
+const { BrowserWindow } = require("electron-acrylic-window")
 
 let mainWindow
 let tray
@@ -29,7 +30,7 @@ function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 500,
 		height: 800,
-		backgroundColor: "#FFF",
+		//backgroundColor: "#FFF",
 		icon: "././build/icon.png",
 		frame: false,
 
@@ -49,6 +50,15 @@ function createWindow() {
 			contextIsolation: true,
 			preload: path.join(__dirname, "preload.js"),
 		},
+	})
+
+	//Sets the transparency on the background
+	mainWindow.setVibrancy({
+		theme: "#8ebba400",
+		effect: "acrylic",
+		useCustomWindowRefreshMethod: true,
+		maximumRefreshRate: 60,
+		disableOnBlur: true
 	})
 
 	//This event will hide the app, and not close it for good (to close it you need to right-click on tray and Quit)
