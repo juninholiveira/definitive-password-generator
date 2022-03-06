@@ -1,7 +1,7 @@
 const { app, Tray, Menu, nativeImage, ipcMain } = require("electron")
 const path = require("path")
 const ipc = ipcMain
-const { BrowserWindow, setVibrancy } = require("electron-acrylic-window")
+const { BrowserWindow } = require("electron-acrylic-window")
 
 let mainWindow
 let tray
